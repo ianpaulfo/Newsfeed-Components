@@ -114,14 +114,14 @@ const data = [
 
 */
 
-const createComponent = (title, date, firstParagraph, secondParagraph, thirdParagraph) => {
+const createArticle = (title, date, firstParagraph, secondParagraph, thirdParagraph) => {
   const article = document.createElement('div');
   const articleTitle = document.createElement('h2');
   const articleDate = document.createElement('p');
   const articleFirst = document.createElement('p');
   const articleSecond = document.createElement('p');
   const articleThird = document.createElement('p');
-  const expandButton = docuement.createElement('span');
+  const expandButton = document.createElement('span');
 
   article.appendChild(articleTitle);
   article.appendChild(articleDate);
@@ -135,7 +135,26 @@ const createComponent = (title, date, firstParagraph, secondParagraph, thirdPara
   expandButton.classlist.add('expandButton');
 
 expandButton.addEventListener('click', () => {
-  article.classlist.add('article-open');
+  article.classlist.toggle('article-open');
 })
+
+articleTitle.textContent = title;
+articleDate.textContent = date;
+articleFirst.textContent = firstParagraph;
+articleSecond.textContent = secondParagraph;
+articleThird.textContent = thirdParagraph;
+
   return article;
 }
+
+date.forEach(element => {
+  
+});
+
+const parentComponent = document.querySelector('.article');
+
+data.forEach(data => {
+  const newArticle = createArticle(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph);
+
+  parentComponent.appendChild(newArticle);
+})
