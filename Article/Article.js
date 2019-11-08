@@ -85,6 +85,24 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'WEBDEV PT11',
+    date: 'Nov 7th, 2019',
+    firstParagraph: `This is the first paragraph in this new article.`,
+
+    secondParagraph: `This is the second paragraph in this new article.`,
+
+    thirdParagraph: `this would be the third and final paragraph of this article.`
+  },
+  {
+    title: 'Final Article of the page',
+    date: 'Dec 25th, 2019',
+    firstParagraph: `This paragraph was written in the future.`,
+
+    secondParagraph: `Merry Christmas from the future.`,
+
+    thirdParagraph: `ya filthy animals!`
   }
 ];
 
@@ -113,8 +131,9 @@ const data = [
 
 
 */
+const parentComponent = document.querySelector('.articles');
 
-const createArticle = (title, date, firstParagraph, secondParagraph, thirdParagraph) => {
+function createArticle(title, date, firstParagraph, secondParagraph, thirdParagraph) {
   const article = document.createElement('div');
   const articleTitle = document.createElement('h2');
   const articleDate = document.createElement('p');
@@ -130,28 +149,30 @@ const createArticle = (title, date, firstParagraph, secondParagraph, thirdParagr
   article.appendChild(articleThird);
   article.appendChild(expandButton);
 
-  article.classlist.add('article');
-  articleDate.classlist.add('date');
-  expandButton.classlist.add('expandButton');
-
-expandButton.addEventListener('click', () => {
-  article.classlist.toggle('article-open');
-});
+  article.classList.add('article');
+  articleDate.classList.add('date');
+  expandButton.classList.add('expandButton');
+  articleFirst.classList.add('p');
+  articleSecond.classList.add('p');
+  articleThird.classList.add('p');
 
 articleTitle.textContent = title;
 articleDate.textContent = date;
 articleFirst.textContent = firstParagraph;
 articleSecond.textContent = secondParagraph;
 articleThird.textContent = thirdParagraph;
+expandButton.textContent = 'read more';
+
+expandButton.addEventListener('click', () => {
+  article.classList.toggle('article-open');
+});
 
   return article;
-}
-
-
-const parentComponent = document.querySelector('.article');
+  console.log(article);
+};
 
 data.forEach(data => {
-  const newArticle = createArticle(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph);
+  parentComponent.appendChild(createArticle(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph));
+});
 
-  parentComponent.appendChild(newArticle);
-})
+  
