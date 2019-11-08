@@ -136,7 +136,7 @@ const createArticle = (title, date, firstParagraph, secondParagraph, thirdParagr
 
 expandButton.addEventListener('click', () => {
   article.classlist.toggle('article-open');
-})
+});
 
 articleTitle.textContent = title;
 articleDate.textContent = date;
@@ -147,9 +147,6 @@ articleThird.textContent = thirdParagraph;
   return article;
 }
 
-date.forEach(element => {
-  
-});
 
 const parentComponent = document.querySelector('.article');
 
