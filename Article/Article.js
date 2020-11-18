@@ -85,6 +85,24 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'WEBDEV PT11',
+    date: 'Nov 7th, 2019',
+    firstParagraph: `This is the first paragraph in this new article.`,
+
+    secondParagraph: `This is the second paragraph in this new article.`,
+
+    thirdParagraph: `this would be the third and final paragraph of this article.`
+  },
+  {
+    title: 'Final Article of the page',
+    date: 'Dec 25th, 2019',
+    firstParagraph: `This paragraph was written in the future.`,
+
+    secondParagraph: `Merry Christmas from the future.`,
+
+    thirdParagraph: `ya filthy animals!`
   }
 ];
 
@@ -111,4 +129,50 @@ const data = [
 
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
+
 */
+const parentComponent = document.querySelector('.articles');
+
+function createArticle(title, date, firstParagraph, secondParagraph, thirdParagraph) {
+  const article = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const articleFirst = document.createElement('p');
+  const articleSecond = document.createElement('p');
+  const articleThird = document.createElement('p');
+  const expandButton = document.createElement('span');
+
+  article.appendChild(articleTitle);
+  article.appendChild(articleDate);
+  article.appendChild(articleFirst);
+  article.appendChild(articleSecond);
+  article.appendChild(articleThird);
+  article.appendChild(expandButton);
+
+  article.classList.add('article');
+  articleDate.classList.add('date');
+  expandButton.classList.add('expandButton');
+  articleFirst.classList.add('p');
+  articleSecond.classList.add('p');
+  articleThird.classList.add('p');
+
+articleTitle.textContent = title;
+articleDate.textContent = date;
+articleFirst.textContent = firstParagraph;
+articleSecond.textContent = secondParagraph;
+articleThird.textContent = thirdParagraph;
+expandButton.textContent = 'read more';
+
+expandButton.addEventListener('click', () => {
+  article.classList.toggle('article-open');
+});
+
+  return article;
+  console.log(article);
+};
+
+data.forEach(data => {
+  parentComponent.appendChild(createArticle(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph));
+});
+
+  
